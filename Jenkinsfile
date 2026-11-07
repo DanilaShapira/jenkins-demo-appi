@@ -11,5 +11,15 @@ pipeline {
                 sh 'docker build -t myapp:$BUILD_NUMBER .'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'docker run --rm -v $WORKSPACE:/app -w /app myapp:$BUILD_NUMBER pytest --junitxml=results.xml'
+            }
+            post {
+                always {
+                    junit 'results.xml'
+                }
+            }
+        }
     }
 }
