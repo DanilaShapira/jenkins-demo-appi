@@ -27,4 +27,15 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo "Build #${env.BUILD_NUMBER} succeeded."
+        }
+        failure {
+            echo "Build #${env.BUILD_NUMBER} failed - check console output."
+        }
+        always {
+            echo "Pipeline finished with status: ${currentBuild.currentResult}"
+        }
+    }
 }
