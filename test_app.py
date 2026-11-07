@@ -8,5 +8,3 @@ def test_add_positive():
 def test_add_negative():
     assert add(-1, -1) == -2
 
-def test_add_wrong_on_purpose():
-    assert add(1, 1) == 3
